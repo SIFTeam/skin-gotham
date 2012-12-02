@@ -1,0 +1,140 @@
+<skin>
+	<!-- ####### Choice Box ####### -->
+	<screen name="ChoiceBox" position="center,center" size="600,460" title="Input Box">
+		<ePixmap pixmap="gotham/menu/backbox.png" zPosition="-1" position="0,0" size="700,600" alphatest="on" />
+		<widget name="text" position="20,20" size="560,25" font="Regular;20" transparent="1" />
+		<widget name="list" position="20,40" size="560,335" scrollbarMode="showOnDemand" selectionPixmap="gotham/icons/ls1120x28.png" transparent="1" />
+		<applet type="onLayoutFinish">
+# this should be factored out into some helper code, but currently demonstrates applets.
+from enigma import eSize, ePoint
+orgwidth = self.instance.size().width()
+orgpos = self.instance.position()
+textsize = self[&quot;text&quot;].getSize()
+# y size still must be fixed in font stuff...
+textsize = (textsize[0] + 80, textsize[1] + 80)
+count = len(self.list)
+if count &gt; 10:
+	count = 10
+offset = 25 * count
+wsizex = textsize[0] + 80
+wsizey = textsize[1] + offset + 10
+if (640 &gt; wsizex):
+	wsizex = 640
+wsize = (wsizex, wsizey)
+# resize
+self.instance.resize(eSize(*wsize))
+# resize label
+self[&quot;text&quot;].instance.resize(eSize(*textsize))
+# move list
+listsize = (wsizex - 20, 25 * count)
+self[&quot;list&quot;].instance.move(ePoint(10, textsize[1]))
+self[&quot;list&quot;].instance.resize(eSize(*listsize))
+# center window
+newwidth = wsize[0]
+self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3)))
+		</applet>
+	</screen>
+
+	<!-- ####### Message Box ####### -->
+	<screen name="MessageBox" position="0,0" size="1280,720" title="System Message" flags="wfNoBorder">
+		<panel name="headfulltemplate" />
+		<panel name="pigtemplate" />
+	        <ePixmap position="900,390" zPosition="1" size="256,256" pixmap="gotham/menu/ico_bluepanel.png" backgroundColor="transparent" alphatest="blend" transparent="1"/>
+		<widget name="text" position="140,137" size="520,0" font="Regular;22" transparent="1"/>
+		<widget name="ErrorPixmap" pixmap="gotham/icons/input_error.png" position="69,137" size="53,53" alphatest="on" />
+		<widget name="QuestionPixmap" pixmap="gotham/icons/input_question.png" position="69,137" size="53,53" alphatest="on" />
+		<widget name="InfoPixmap" pixmap="gotham/icons/input_info.png" position="69,137" size="53,53" alphatest="on" />
+		<widget name="list" position="100,100" size="480,375" selectionPixmap="gotham/icons/ls1120x28.png" transparent="1" />
+		<applet type="onLayoutFinish">
+# this should be factored out into some helper code, but currently demonstrates applets.
+from enigma import eSize, ePoint
+orgwidth = self.instance.size().width()
+orgpos = self.instance.position()
+textsize = self[&quot;text&quot;].getSize()
+# y size still must be fixed in font stuff...
+textsize = (textsize[0] + 80, textsize[1] + 80)
+offset = 20
+if self.type == self.TYPE_YESNO:
+	offset = 80
+wsizex = textsize[0] + 80
+wsizey = textsize[1] + offset
+if (600 &gt; wsizex):
+	wsizex = 728
+wsize = (wsizex, wsizey)
+# resize
+#self.instance.resize(eSize(*wsize))
+# resize label
+self[&quot;text&quot;].instance.resize(eSize(*textsize))
+# move list
+listsize = (wsizex - 20, 50)
+self[&quot;list&quot;].instance.move(ePoint(69, textsize[1] + 110))
+self[&quot;list&quot;].instance.resize(eSize(*listsize))
+# center window
+#newwidth = wsize[0]
+#self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
+		</applet>
+	</screen>
+
+	<!-- ####### Action Box ####### -->
+	<!-- extra action box -->
+	<screen name="ExtraMessageBox" position="0,0" size="1280,720" title="Message System" flags="wfNoBorder">
+		<panel name="headfulltemplate" />
+		<panel name="pigtemplate" />
+	        <ePixmap position="900,390" zPosition="1" size="256,256" pixmap="gotham/menu/ico_bluepanel.png" backgroundColor="transparent" alphatest="blend" transparent="1"/>
+		<!--
+		<widget name="text" position="140,137" size="520,0" font="Regular;22" transparent="1"/>
+		<widget name="ErrorPixmap" pixmap="gotham/icons/input_error.png" position="69,137" size="53,53" alphatest="on" />
+		<widget name="QuestionPixmap" pixmap="gotham/icons/input_question.png" position="69,137" size="53,53" alphatest="on" />
+		<widget name="InfoPixmap" pixmap="gotham/icons/input_info.png" position="69,137" size="53,53" alphatest="on" />
+		<widget name="list" position="100,100" size="480,375" selectionPixmap="gotham/icons/ls680x28.png" transparent="1" />
+		-->
+		<widget name="message" position="70,110" size="670,26" font="Regular;24" foregroundColor="bluette" transparent="1" />
+		<widget source="menu" render="Listbox" position="70,230" size="725,360" scrollbarMode="showOnDemand" selectionPixmap="gotham/icons/ls800x40.png" transparent="1" >
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					MultiContentEntryPixmapAlphaTest(pos = (2, 4), size = (40, 40), png = 0),
+					MultiContentEntryText(pos = (65, 10), size = (600, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
+				],
+				"fonts": [gFont("Regular", 22)],
+				"itemHeight": 40
+				}
+			</convert>
+		</widget>
+	<applet type="onLayoutFinish">
+# this should be factored out into some helper code, but currently demonstrates applets.
+from enigma import eSize, ePoint
+orgwidth = self.instance.size().width()
+orgheight = self.instance.size().height()
+orgpos = self.instance.position()
+textsize = self[&quot;message&quot;].getSize()
+# y size still must be fixed in font stuff...
+if self[&quot;message&quot;].getText() != &quot;&quot;:
+	textsize = (textsize[0] + 80, textsize[1] + 60)
+else:
+	textsize = (textsize[0] + 80, textsize[1] + 4)
+
+count = len(self.list)
+if count &gt; 7:
+	count = 7
+offset = 48 * count
+wsizex = textsize[0] + 80
+wsizey = textsize[1] + offset + 20
+
+#if (460 &gt; wsizex):
+wsizex = 700
+wsize = (wsizex, wsizey)
+# resize
+#self.instance.resize(eSize(*wsize))
+# resize label
+self[&quot;message&quot;].instance.resize(eSize(*textsize))
+# move list
+listsize = (wsizex - 20, 48 * count)
+self[&quot;menu&quot;].downstream_elements.downstream_elements.instance.move(ePoint(77, textsize[1] + 167))
+self[&quot;menu&quot;].downstream_elements.downstream_elements.instance.resize(eSize(*listsize))
+# center window
+#newwidth = wsize[0]
+#newheight = wsize[1]
+#self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()  + (orgheight - newheight)/2))
+		</applet>
+	</screen>
+</skin>

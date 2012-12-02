@@ -1,0 +1,96 @@
+<skin>
+	<!-- LCD screen (channelselection)  -->
+	<screen name="ChannelSelection_summary" title="LCD Screen" position="0,0" size="132,64">
+		<widget source="parent.ServiceEvent" render="Label" position="6,0" size="120,25" font="Display;12" halign="center" valign="center" >
+		<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="parent.ServiceEvent" render="Progress" position="16,27" size="100,5" borderWidth="1">
+		<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="6,32" size="90,32" font="Display;30" halign="right" valign="top">
+		<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="100,34" zPosition="1" size="26,30" font="Display;14" valign="top">
+		<convert type="ClockToText">Format:%S</convert>
+		</widget>
+	</screen>
+
+	<!-- LCD screen (main) -->
+	<screen name="InfoBarSummary" title="InfoBar" position="0,0" size="132,64">
+		<widget source="session.CurrentService" render="Label" position="6,0" size="120,25" font="Display;12" halign="center" valign="center" >
+		<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="16,27" size="100,5" borderWidth="1">
+		<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="6,32" size="90,32" font="Display;30" halign="right" valign="top">
+		<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="100,34" zPosition="1" size="26,30" font="Display;14" valign="top">
+		<convert type="ClockToText">Format:%S</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text=" " position="6,30" zPosition="1" size="120,34">
+		<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+		<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+
+	<!-- LCD screen (movieplayer) -->
+  	<screen name="InfoBarMoviePlayerSummary" title="InfoBar" position="0,0" size="132,64">
+		<widget source="session.CurrentService" render="Label" position="6,0" size="120,25" font="Display;12" halign="center" valign="center" >
+		<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="16,27" size="100,5" borderWidth="1">
+		<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="6,32" size="120,32" font="Display;30" halign="center" valign="center">
+		<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text=" " position="6,32" zPosition="1" size="120,32">
+		<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+		<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+
+	<!-- LCD screen (setup) -->
+	<screen name="SetupSummary" title="InfoBar" position="0,0" size="132,64">
+		<widget source="SetupTitle" render="Label" position="6,0" size="120,14" font="Display;10" />
+		<widget source="SetupEntry" render="Label" position="6,14" size="120,36" font="Display;10" />
+		<widget source="SetupValue" render="Label" position="6,50" size="120,14" font="Display;10" />
+	</screen>
+
+	<!-- LCD screen (menus)  -->
+	<screen name="MenuSummary" title="Menu Summary" position="0,0" size="132,64">
+		<widget source="parent.title" render="Label" position="6,0" size="120,32" font="Display;14" halign="center" valign="center"/>
+		<widget source="parent.menu" render="Label" position="6,32" size="120,32" font="Display;16" halign="center" valign="center">
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>
+
+	<!-- LCD screen (misc) -->
+	<screen name="SimpleSummary" title="Simple Summary" position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="6,0" size="120,64" font="Display;14" halign="center" valign="center" />
+	</screen>
+
+	<!-- LCD screen (standby) -->
+	<screen name="StandbySummary" title="StandBy" position="0,0" size="132,64">
+		<widget source="global.CurrentTime" render="Label" position="6,0" size="120,64" font="Display;38" halign="center" valign="center">
+		<convert type="ClockToText">Format:%H:%M</convert>
+		<!--	<convert type="ClockToText">Format:%a %d/%m %H:%M</convert> AzShit-->
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="6,0" zPosition="1" size="120,64" text=" ">
+		<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+		<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+
+	<!-- LCD screen (summary) -->
+	<screen name="JobView_summary" title="JobView" position="0,0" size="132,64">
+		<widget source="parent.summary_job_name" render="Label" position="6,4" size="120,42" font="Display;14" />
+		<widget source="parent.summary_job_task" render="Label" position="6,22" size="120,26" font="Display;10" />
+		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />
+		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="50,12" font="Display;10" zPosition="2" halign="center" transparent="1"  >
+		<convert type="ProgressToText" />
+		</widget>
+	</screen>
+</skin>

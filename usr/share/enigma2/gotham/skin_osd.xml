@@ -1,0 +1,256 @@
+<skin>
+	<!-- [MAIN PANELS] InfoBar -->
+	<screen name="InfoBar" position="0,0" size="1280,720" title="InfoBar" backgroundColor="transparent" flags="wfNoBorder">
+		<ePixmap position="0,450" zPosition="1" size="1280,250" pixmap="gotham/infobar_light.png" transparent="1"/> 
+		<!-- Analogic Clock -->
+		<!-- Orologio Analogico - Analogic Clock -->
+		<widget source="global.CurrentTime" render="Analogic" position="1131,573" zPosition="4" size="36,36" transparent="1" alphatest="on" linewidth="2">
+			<convert type="ClockToText">AnalogHours</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Analogic" position="1126,569" zPosition="5" size="46,46" transparent="1" alphatest="on" linewidth="2">
+			<convert type="ClockToText">AnalogMinutes</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Analogic" position="1122,563" foregroundColor="#f23d21" zPosition="6" size="56,56" transparent="1" alphatest="on" linewidth="1">
+        	<convert type="ClockToText">AnalogSeconds</convert>
+        	</widget>
+		<!-- Data -->
+		<widget source="global.CurrentTime" render="Label" position="940,543" size="160,26" zPosition="2" font="Regular;22" halign="center" backgroundColor="black" foregroundColor="#565656" transparent="1" >
+			<convert type="ClockToText">Format:%d.%m.%Y</convert>
+		</widget>	
+		<!-- Service Name -->
+		<widget source="session.CurrentService" render="Label" position="360,518" size="550,37" zPosition="2" font="Regular;30" halign="center" noWrap="1" transparent="1" foregroundColor="#e2dedf" backgroundColor="background">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<!-- Event Now -->
+		<widget source="session.Event_Now" render="Label" position="271,579" size="90,30" zPosition="2" halign="left"  font="Regular;24" foregroundColor="white" backgroundColor="background" transparent="1" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="357,579" size="580,32" zPosition="2" halign="left" font="Regular;24"  foregroundColor="white" backgroundColor="background" transparent="1" noWrap="1">
+			<convert type="EventName">Name</convert>
+		</widget>		
+		<widget source="session.Event_Now" render="Label" position="926,579" size="115,30" zPosition="2" halign="right"  font="Regular;24" foregroundColor="white" backgroundColor="background" transparent="1" >
+			<convert type="EventTime">Remaining</convert>
+			<convert type="RemainingToText">InMinutes</convert>
+		</widget>
+		<!-- Event Next -->
+		<widget source="session.Event_Next" render="Label" position="271,614" size="90,30" zPosition="2" halign="left"  font="Regular;24" foregroundColor="#8d8d8d" backgroundColor="background" transparent="1" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="session.Event_Next" render="Label" position="357,614" size="580,32" zPosition="2" halign="left" font="Regular;24" foregroundColor="#8d8d8d" backgroundColor="background" transparent="1" noWrap="1">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="session.Event_Next" render="Label" position="926,614" size="115,30" zPosition="2" halign="right"  font="Regular;24" foregroundColor="#8d8d8d" backgroundColor="background" transparent="1" >
+			<convert type="EventTime">Duration</convert>
+			<convert type="ClockToText">InMinutes</convert>
+		</widget>	
+		<!-- Progress Bar -->
+		<widget source="session.Event_Now" render="Progress" pixmap="gotham/p_bar.png" position="273,609" size="775,6" zPosition="7" transparent="1" > 
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<!-- Picon Position -->
+		<widget source="session.CurrentService" render="Picon" position="100,530" size="130,80" zPosition="10" transparent="1" alphatest="on">
+			<convert type="ServiceName">Reference</convert>	
+		</widget>
+		<!-- DVB Section -->
+		<widget source="session.FrontendInfo" render="FixedLabel" text="Sat - snr" position="840, 661" zPosition="3" size="100, 26" font="Regular;17"  halign="left" foregroundColor="bluette" backgroundColor="black" transparent="1">
+				<convert type="FrontendInfo">TYPE</convert>
+				<convert type="ValueRange">0,0</convert>
+				<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" text="Cab - snr" position="840, 661" zPosition="3" size="80, 26" font="Regular;17"  halign="left" foregroundColor="bluette" backgroundColor="black" transparent="1">
+				<convert type="FrontendInfo">TYPE</convert>
+				<convert type="ValueRange">1,1</convert>
+				<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" text="Dtt - snr" position="840, 661" zPosition="3" size="80, 26" font="Regular;17"  halign="left" foregroundColor="bluette" backgroundColor="black" transparent="1">
+				<convert type="FrontendInfo">TYPE</convert>
+				<convert type="ValueRange">2,2</convert>
+				<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- SNR Section -->
+		<widget source="session.FrontendStatus" render="Progress" position="919,669" size="239,15" zPosition="3" pixmap="gotham/snron.png" transparent="1" >
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+		<widget source="session.FrontendStatus" render="Label" position="1165,662" zPosition="4" size="70,20" halign="left" font="Regular;13" foregroundColor="white" transparent="1" backgroundColor="black">
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+		<eLabel text="CH." position="255,542" size="30,20" zPosition="3" halign="center" font="Regular;18" transparent="1" backgroundColor="black" />
+		<widget source="session.CurrentService" render="ServiceNumber" position="284,540" size="71,28" font="Regular; 26" halign="left" transparent="1" foregroundColor="bluette" backgroundColor="transpBlack" zPosition="2" />	
+		<ePixmap position="90,661" zPosition="2" size="81,18" pixmap="gotham/icons/dolby_of.png" alphatest="blend" />
+		<!-- Dolby System -->
+		<widget source="session.CurrentService" render="Pixmap" pixmap="gotham/icons/dolby_on.png" position="90,661" zPosition="4" size="81,18" alphatest="blend" >
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- WideScreen Format -->
+		<ePixmap position="180,661" zPosition="2" size="53,18" pixmap="gotham/icons/wide_of.png" alphatest="blend" />
+		<widget source="session.CurrentService" render="Pixmap" pixmap="gotham/icons/wide_on.png" position="180,661" zPosition="4" size="53,18" alphatest="blend" >
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- HD-SD Selection -->	
+		<ePixmap position="225,661" zPosition="2" size="53,18" pixmap="gotham/icons/hd_of.png" alphatest="blend" />
+		<widget source="session.CurrentService" render="Pixmap" pixmap="gotham/icons/hd_on.png" position="225,661" size="53,18" zPosition="4" alphatest="blend">
+			<convert type="ServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">721,1980</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- Crypt Icon -->
+		<ePixmap position="285,661" zPosition="2" size="35,18" pixmap="gotham/icons/crypt_of.png" alphatest="blend" />
+		<widget source="session.CurrentService" render="Pixmap" pixmap="gotham/icons/crypt_on.png" position="285,661" zPosition="4" size="35,18" alphatest="blend" >
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- Sub Services Icon -->
+		<ePixmap position="335,661" zPosition="2" size="30,18" pixmap="gotham/icons/sub_of.png" alphatest="blend" />
+		<widget source="session.CurrentService" render="Pixmap" pixmap="gotham/icons/sub_on.png" position="335,661" zPosition="4" size="30,18" alphatest="on">
+			<convert type="ServiceInfo">SubservicesAvailable</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- Icons Recorder -->
+		<ePixmap position="1050,600" zPosition="2" size="22,22" pixmap="gotham/icons/icon_norec_light.png" alphatest="on" />
+		<widget source="session.RecordState" render="Pixmap" pixmap="gotham/icons/icon_rec_light.png" position="1050,600" zPosition="3" size="22,22" alphatest="on">
+			<convert type="ConditionalShowHide">Blink</convert> 
+		</widget>
+		<!-- Provider Name -->
+		<widget source="session.CurrentService" render="Label" position="90,495" size="145,30" zPosition="2" font="Regular;22" backgroundColor="black" halign="center" foregroundColor="grey" transparent="1" >
+			<convert type="ServiceName">Provider</convert>
+		</widget>
+		<!-- Video Resolution -->
+		<widget source="session.CurrentService" render="Label" zPosition="4" position="97,623" size="55,24" halign="right" font="Console;16" foregroundColor="#404040" transparent="1" backgroundColor="black">
+				<convert type="ServiceInfo">VideoWidth</convert>
+		</widget>
+		<eLabel text="x" zPosition="4" position="158,622" size="17,24" halign="left" font="Regular;15" foregroundColor="#808080" transparent="1" backgroundColor="black" />
+		<widget source="session.CurrentService" render="Label" zPosition="4" position="171,623" size="55,24" halign="left" font="Console;16" foregroundColor="#404040" transparent="1" backgroundColor="black">
+			<convert type="ServiceInfo">VideoHeight</convert>	
+		</widget>	
+	</screen>
+
+	<!-- SECOND INFOBAR -->
+	<screen name="SecondInfoBar" flags="wfNoBorder" position="0,0" size="1280,200" title="InfoBar" backgroundColor="transparent" devtag="002">
+		<panel name="InfoBar" />
+		<ePixmap position="40,30" zPosition="1" size="1200,116" pixmap="gotham/extrabar.png" transparent="1"/> 
+		<!-- emu icons-->
+		<ePixmap position="65,79" zPosition="4" size="40,20" pixmap="gotham/icons/crypt_on_ext.png" alphatest="on" />
+		<widget text="BET" render="Label" source="session.CurrentService" position="100,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="grey" transparent="1" zPosition="2" />
+		<widget text="BET" render="Label" source="session.CurrentService" position="100,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="red" transparent="1" zPosition="3">
+			<convert type="ExtremeInfo">BetaCrypt</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="BET" render="Label" source="session.CurrentService" position="100,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="bluette" transparent="1" zPosition="4">
+			<convert type="ExtremeInfo">BetaEcm</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="IRD" render="Label" source="session.CurrentService" position="148,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="grey" transparent="1" zPosition="2" />
+		<widget text="IRD" render="Label" source="session.CurrentService" position="148,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="red" transparent="1" zPosition="3">
+			<convert type="ExtremeInfo">IrdCrypt</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="IRD" render="Label" source="session.CurrentService" position="148,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="bluette" transparent="1" zPosition="4">
+			<convert type="ExtremeInfo">IrdEcm</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="SEC" render="Label" source="session.CurrentService" position="196,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="grey"  transparent="1" zPosition="2" />
+		<widget text="SEC" render="Label" source="session.CurrentService" position="196,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="red" transparent="1" zPosition="3">
+			<convert type="ExtremeInfo">SecaCrypt</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="SEC" render="Label" source="session.CurrentService" position="196,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="bluette" transparent="1" zPosition="4">
+			<convert type="ExtremeInfo">SecaEcm</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="VIA" render="Label" source="session.CurrentService" position="244,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="grey" transparent="1" zPosition="2" />
+		<widget text="VIA" render="Label" source="session.CurrentService" position="244,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="red" transparent="1" zPosition="3">
+			<convert type="ExtremeInfo">ViaCrypt</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="VIA" render="Label" source="session.CurrentService" position="244,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="bluette" transparent="1" zPosition="4">
+			<convert type="ExtremeInfo">ViaEcm</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="NAG" render="Label" source="session.CurrentService" position="290,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="grey" transparent="1" zPosition="2" />
+		<widget text="NAG" render="Label" source="session.CurrentService" position="290,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="red" transparent="1" zPosition="3">
+			<convert type="ExtremeInfo">NagraCrypt</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="NAG" render="Label" source="session.CurrentService" position="290,75"  size="45,22" font="Regular;20" backgroundColor="transparent" foregroundColor="bluette" transparent="1" zPosition="4">
+			<convert type="ExtremeInfo">NagraEcm</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="CRW" render="Label" source="session.CurrentService" position="341,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="grey" transparent="1" zPosition="2" />
+		<widget text="CRW" render="Label" source="session.CurrentService" position="341,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="red" transparent="1" zPosition="3">
+			<convert type="ExtremeInfo">CrwCrypt</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="CRW" render="Label" source="session.CurrentService" position="341,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="bluette" transparent="1" zPosition="4">
+			<convert type="ExtremeInfo">CrwEcm</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="NDS" render="Label" source="session.CurrentService" position="398,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="grey" transparent="1" zPosition="2" />
+		<widget text="NDS" render="Label" source="session.CurrentService" position="398,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="red" transparent="1" zPosition="3">
+			<convert type="ExtremeInfo">NdsCrypt</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="NDS" render="Label" source="session.CurrentService" position="398,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="bluette" transparent="1" zPosition="4">
+			<convert type="ExtremeInfo">NdsEcm</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="CON" render="Label" source="session.CurrentService" position="448,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="grey" transparent="1" zPosition="2" />
+		<widget text="CON" render="Label" source="session.CurrentService" position="448,75"  size="45,22" font="Regular;20" backgroundColor="black" foregroundColor="red" transparent="1" zPosition="3">
+			<convert type="ExtremeInfo">ConaxCrypt</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget text="CON" render="Label" source="session.CurrentService" position="448,75"  size="45,22" font="Regular;20" backgroundColor="transparent" foregroundColor="bluette" transparent="1" zPosition="4">
+			<convert type="ExtremeInfo">ConaxEcm</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<ePixmap position="505,78" zPosition="4" size="20,20" pixmap="gotham/icons/tuner.png" alphatest="on" />
+		<!-- widget text="EMU" render="Label" source="session.CurrentService" position="540,75"  size="50,22" font="Regular;20" backgroundColor="black" foregroundColor="white" transparent="1" zPosition="2" -->
+		<widget text="EMU" render="Label" source="session.CurrentService" position="540,75"  size="50,22" font="Regular;20" backgroundColor="black" foregroundColor="bluette" transparent="1" zPosition="4">
+			<convert type="ExtremeInfo">Emu</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- widget text="CRD" render="Label" source="session.CurrentService" position="540,75"  size="50,22" font="Regular;20" backgroundColor="black" foregroundColor="white" transparent="1" zPosition="2" -->
+		<widget text="CRD" render="Label" source="session.CurrentService" position="540,75"  size="50,22" font="Regular;20" backgroundColor="black" foregroundColor="bluette" transparent="1" zPosition="4">
+			<convert type="ExtremeInfo">Crd</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- widget text="NET" render="Label" source="session.CurrentService" position="540,75"  size="50,22" font="Regular;20" backgroundColor="black" foregroundColor="white" transparent="1" zPosition="2" -->
+		<widget text="NET" render="Label" source="session.CurrentService" position="540,75"  size="50,22" font="Regular;20" backgroundColor="black" foregroundColor="bluette" transparent="1" zPosition="4">
+			<convert type="ExtremeInfo">Net</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget halign="left" backgroundColor="black" foregroundColor="white" transparent="1" position="590,75" render="Label" size="300,22" font="Regular;20" source="session.CurrentService" zPosition="4">
+			<convert type="EmuCamInfo">Address</convert>
+		</widget>
+		
+		<widget halign="left" backgroundColor="black" foregroundColor="bluette" transparent="1" position="935,75" render="Label" size="200,24" font="Regular;20" source="session.CurrentService" zPosition="4">
+			<convert type="EmuCamInfo">Hops</convert>
+		</widget>
+		<widget halign="right" backgroundColor="black" foregroundColor="grey" transparent="1" position="1010,75" render="Label" size="200,26" font="Regular;20" source="session.CurrentService" zPosition="4">
+			<convert type="EmuCamInfo">Time</convert>
+		</widget>
+		<!-- emu info protocol - -->
+		<ePixmap position="60,47" zPosition="4" size="20,20" pixmap="gotham/icons/tuner.png" alphatest="on" />
+		<widget halign="left" backgroundColor="black" foregroundColor="bluette" transparent="1" position="85,42" render="Label" size="208,26" font="Regular;20" source="session.CurrentService" zPosition="4">
+			<convert type="EmuCamInfo">Protocol</convert>
+		</widget>
+		<ePixmap position="315,48" zPosition="4" size="30,20" pixmap="gotham/icons/s_cam.png" alphatest="on" />
+		<widget halign="center" backgroundColor="black" foregroundColor="grey" transparent="1" position="300,44" render="Label" size="220,26" font="Regular;20" source="session.CurrentService" zPosition="4">
+			<convert type="EmuCamInfo">EMU</convert>
+		</widget>
+		<widget halign="right" backgroundColor="black" foregroundColor="grey" transparent="1" position="893,44" render="Label" size="323,26" font="Regular;20" source="session.CurrentService" zPosition="4">
+			<convert type="EmuCamInfo">IDInfo</convert>
+		</widget>
+		<!-- other icons -->
+		<widget source="session.CurrentService" render="Pixmap" pixmap="gotham/icons/icon_sub.png" position="830,42" zPosition="4" size="46,28" alphatest="on">
+			<convert type="ServiceInfo">SubservicesAvailable</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget> 
+	</screen>
+</skin>
+
+
+

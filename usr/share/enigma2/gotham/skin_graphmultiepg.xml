@@ -1,0 +1,70 @@
+<skin>
+	<!-- () Graph MultiEPG -->
+	<screen name="GraphMultiEPG" position="0,0" size="1280,720" title="Electronic Program Guide" backgroundColor="black" flags="wfNoBorder">
+		<panel name="headtemplate" />
+		<panel name="4keys" />
+		<panel name="pigtemplate" />
+		<ePixmap position="775,130" zPosition="4" size="29,480" pixmap="gotham/icons/maxbar.png" alphatest="blend" transparent="1" />
+		<ePixmap position="775,605" zPosition="4" size="29,40" pixmap="gotham/icons/endbar.png" alphatest="blend" transparent="1" />
+		<widget name="timeline_text" position="65,100" size="800,30" foregroundColor="bluette" backgroundColor="black" transparent="1" />
+		<widget name="list" position="50,135" size="750,480" scrollbarMode="showOnDemand" foreColorSelected="white" EntryBorderColor="bluette" EntryBackgroundColor="#2f4964" EntryBackgroundColorSelected="#073a6c" transparent="1" />
+		<ePixmap position="67,132" size="700,2" pixmap="gotham/div-h.png" alphatest="blend" transparent="1" />
+		<ePixmap position="67,616" size="700,2" pixmap="gotham/div-h.png" alphatest="blend" transparent="1" />
+		<widget name="timeline0" position="80,133" zPosition="1" size="1,484" pixmap="gotham/timeline.png" />
+		<widget name="timeline1" position="80,133" zPosition="1" size="1,484" pixmap="gotham/timeline.png" />
+		<widget name="timeline2" position="80,133" zPosition="1" size="1,484" pixmap="gotham/timeline.png" />
+		<widget name="timeline3" position="80,133" zPosition="1" size="1,484" pixmap="gotham/timeline.png" />
+		<widget name="timeline4" position="80,133" zPosition="1" size="1,484" pixmap="gotham/timeline.png" />
+		<widget name="timeline5" position="80,133" zPosition="1" size="1,484" pixmap="gotham/timeline.png" />
+		<widget name="timeline_now" position="80,126" zPosition="2" size="19,500" pixmap="gotham/timeline-now.png" alphatest="on" />
+		<!-- Widget Event -->
+		<widget source="Event" render="Label" position="815,70" zPosition="2" size="440,24" font="Regular;22" halign="left" foregroundColor="bluette" transparent="1" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:(%A)</convert>
+		</widget>
+		<widget source="Event" render="Label" position="1085,70" zPosition="2" size="60,22" font="Regular;20" halign="right" foregroundColor="bluette" transparent="1" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText"></convert>
+		</widget>
+		<widget source="Event" render="Label" position="1145,70" zPosition="2" size="70,22" font="Regular;20" halign="right" foregroundColor="bluette" transparent="1" >
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
+		</widget>
+		<widget source="Event" render="Label" position="830,371" zPosition="2" size="390,26" font="Regular;20" halign="center" foregroundColor="bluette" transparent="1" >
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" pixmap="gotham/tv_b_bar.png" size="340,2" position="827,365" zPosition="5" backgroundColor="black" transparent="1">
+			<convert type="EventTime">Progress</convert>
+		</widget>	
+		<widget source="Event" render="Label" position="830,405" zPosition="2" size="390,260" font="Regular;20" halign="center" foregroundColor="white" transparent="1" >
+			<convert type="EventName">ExtendedDescription</convert>
+		</widget>
+		 <widget source="global.CurrentTime" 	render="Label" position="819,650" size="70,34" zPosition="1"	font="Regular;22" valign="top" halign="right" foregroundColor="bluette" transparent="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="global.CurrentTime" 	render="Label" position="890,650" size="70,22" zPosition="1" font="Regular;22" valign="top" halign="left" foregroundColor="white" transparent="1">
+			<convert type="ClockToText">Format::%S</convert>
+		</widget>
+		<ePixmap pixmap="gotham/icons/clock.png" position="935,657" size="14,14" zPosition="1" alphatest="blend"/>
+		<ePixmap pixmap="gotham/buttons/key_menu1.png" position="1040,645" size="74,36" zPosition="1" alphatest="blend"/>
+		<ePixmap pixmap="gotham/buttons/key_info1.png" position="1140,645" size="74,36" zPosition="1" alphatest="blend"/>
+	</screen>
+	<!-- () Graph MultiEPG Setting -->
+       	<screen name="GraphMultiEpgSetup" position="0,0" size="1280,720" title="Electronic Program Guide Setup" flags="wfNoBorder" >
+		<panel name="headmonotemplate" />
+		<panel name="2keys" />
+		<panel name="pigtemplate" />
+		<ePixmap position="900,390" zPosition="1" size="256,256" pixmap="gotham/menu/ico_log.png" alphatest="blend" transparent="1" />
+               	<widget name="config" position="70,110" size="725,400" selectionPixmap="gotham/icons/ls1120x28.png" transparent="1" />
+               	<widget name="canceltext" position="70,647" zPosition="1" size="140,40" font="Regular;20" halign="center" backgroundColor="black" transparent="1" />
+               	<widget name="oktext" position="270,647" zPosition="1" size="140,40" font="Regular;20" halign="center" backgroundColor="black" transparent="1" />
+	</screen>
+	<!-- () Graph MultiEPG Select Bouquet -->
+	<screen name="SelectBouquet" position="0,0" size="1280,720" title="Bouquet Selection" flags="wfNoBorder" >
+		<panel name="headfulltemplate" />
+		<panel name="scrollbarmaxtemplate" />
+		<panel name="pigtemplate" />
+		<ePixmap position="900,390" zPosition="1" size="256,256" pixmap="gotham/menu/ico_log.png" alphatest="blend" transparent="1" />
+              <widget name="menu" position="70,110" size="725,500" scrollbarMode="showOnDemand" selectionPixmap="gotham/icons/ls1120x28.png" transparent="1" />
+        </screen>
+</skin>
